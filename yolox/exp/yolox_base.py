@@ -122,6 +122,8 @@ class Exp(BaseExp):
             head = YOLOXHead(self.num_classes, self.width, in_channels=in_channels, act=self.act)
             self.model = YOLOX(backbone, head)
 
+
+        self.model = torch.load('/workspace/tensorrt/YOLOX/model.pth')
         self.model.apply(init_yolo)
         self.model.head.initialize_biases(1e-2)
         self.model.train()
